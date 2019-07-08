@@ -23,11 +23,26 @@
     ParseClientConfiguration *config = [ParseClientConfiguration   configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
         
         configuration.applicationId = @"myInstaId";
-        configuration.server = @"http://instagramez.herokuapp.com/parse";
+        configuration.server = @"https://instagramez.herokuapp.com/parse";
     }];
     
     [Parse initializeWithConfiguration:config];
-
+    
+    /*
+    //a final test
+    PFObject *gameScore = [PFObject objectWithClassName:@"GameScore"];
+    gameScore[@"score"] = @1337;
+    gameScore[@"playerName"] = @"Sean Plott";
+    gameScore[@"cheatMode"] = @NO;
+    [gameScore saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            NSLog(@"Object saved!");
+        } else {
+            NSLog(@"Error: %@", error.description);
+        }
+    }];
+     */
+    
     return YES;
 }
 
