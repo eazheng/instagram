@@ -28,7 +28,7 @@
     
     [Parse initializeWithConfiguration:config];
     
-    //if the current user is already logged in, then go directly to main homepage
+    //if the current user is already logged in, then go directly to main homepage (Home)
     if (PFUser.currentUser) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         

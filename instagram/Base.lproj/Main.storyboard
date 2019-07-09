@@ -100,6 +100,7 @@
                         <outlet property="passwordLabel" destination="TXH-4s-d9x" id="mwk-Iq-AaI"/>
                         <outlet property="usernameField" destination="Ilr-zr-say" id="uoB-2k-Qde"/>
                         <outlet property="usernameLabel" destination="b5P-th-eus" id="Pq4-Hr-iC0"/>
+                        <segue destination="pgi-U8-dgT" kind="presentation" identifier="registered" id="Rt7-mZ-G9N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -109,7 +110,7 @@
         <!--Login View Controller-->
         <scene sceneID="YKd-WV-yU9">
             <objects>
-                <viewController id="D5T-1z-NnJ" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="D5T-1z-NnJ" customClass="LoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="APN-10-MUD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -152,7 +153,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="s4S-u0-FBW"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="signup" id="s4S-u0-FBW"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -172,7 +173,7 @@
         <!--Home Timeline-->
         <scene sceneID="F9O-ZD-Kss">
             <objects>
-                <viewController storyboardIdentifier="Main" id="F6V-uw-eB4" customClass="timelineViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Home" id="F6V-uw-eB4" customClass="timelineViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8e6-Hv-IME">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -182,8 +183,7 @@
                     <navigationItem key="navigationItem" title="Home Timeline" id="kM6-db-FLV">
                         <barButtonItem key="leftBarButtonItem" title="Log Out" id="o8n-Nb-oBk">
                             <connections>
-                                <action selector="logoutAction:" destination="F6V-uw-eB4" id="NCF-x7-B7Y"/>
-                                <segue destination="D5T-1z-NnJ" kind="presentation" id="CDq-o1-WiN"/>
+                                <action selector="logoutAction:" destination="F6V-uw-eB4" id="lgw-qQ-znG"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -195,7 +195,7 @@
         <!--Navigation Controller-->
         <scene sceneID="6cc-Fa-a6s">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pgi-U8-dgT" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="AuthenticatedViewController" automaticallyAdjustsScrollViewInsets="NO" id="pgi-U8-dgT" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nZd-q0-Fxc">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -212,6 +212,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="CDq-o1-WiN"/>
+        <segue reference="R0Y-lq-YKz"/>
     </inferredMetricsTieBreakers>
 </document>
