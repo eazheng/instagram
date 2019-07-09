@@ -28,6 +28,14 @@
     
     [Parse initializeWithConfiguration:config];
     
+    //if the current user is already logged in, then go directly to main homepage
+    if (PFUser.currentUser) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        
+        self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"AuthenticatedViewController"];
+    }
+    //NSLog(@"HELLO");
+    
     /*
     //a final test
     PFObject *gameScore = [PFObject objectWithClassName:@"GameScore"];
