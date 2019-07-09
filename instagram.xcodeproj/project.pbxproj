@@ -18,6 +18,8 @@
 		386263EC22D409C900CBB2D6 /* signupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 386263EB22D409C900CBB2D6 /* signupViewController.m */; };
 		386263EF22D40BD600CBB2D6 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 386263EE22D40BD600CBB2D6 /* LoginViewController.m */; };
 		386263F222D410A700CBB2D6 /* timelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 386263F122D410A700CBB2D6 /* timelineViewController.m */; };
+		386263F822D5294F00CBB2D6 /* ImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 386263F722D5294F00CBB2D6 /* ImagePickerViewController.m */; };
+		386263FB22D542DF00CBB2D6 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 386263FA22D542DF00CBB2D6 /* Post.m */; };
 		44F348DCCEE96A9241011375 /* Pods_instagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9150620202DF42619726F364 /* Pods_instagram.framework */; };
 		CFB936E2415B4C0996241BC4 /* Pods_instagramUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02F934713BA0EEA9940D454A /* Pods_instagramUITests.framework */; };
 /* End PBXBuildFile section */
@@ -63,6 +65,10 @@
 		386263EE22D40BD600CBB2D6 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		386263F022D410A700CBB2D6 /* timelineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = timelineViewController.h; sourceTree = "<group>"; };
 		386263F122D410A700CBB2D6 /* timelineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = timelineViewController.m; sourceTree = "<group>"; };
+		386263F622D5294F00CBB2D6 /* ImagePickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImagePickerViewController.h; sourceTree = "<group>"; };
+		386263F722D5294F00CBB2D6 /* ImagePickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImagePickerViewController.m; sourceTree = "<group>"; };
+		386263F922D542DF00CBB2D6 /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		386263FA22D542DF00CBB2D6 /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		39482CBC15C6E3B670D7FB35 /* Pods-instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instagram.release.xcconfig"; path = "Target Support Files/Pods-instagram/Pods-instagram.release.xcconfig"; sourceTree = "<group>"; };
 		9150620202DF42619726F364 /* Pods_instagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_instagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAB892827096AEFE6F1C68E9 /* Pods-instagramUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instagramUITests.debug.xcconfig"; path = "Target Support Files/Pods-instagramUITests/Pods-instagramUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -188,6 +194,8 @@
 				386263EE22D40BD600CBB2D6 /* LoginViewController.m */,
 				386263F022D410A700CBB2D6 /* timelineViewController.h */,
 				386263F122D410A700CBB2D6 /* timelineViewController.m */,
+				386263F622D5294F00CBB2D6 /* ImagePickerViewController.h */,
+				386263F722D5294F00CBB2D6 /* ImagePickerViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -195,6 +203,8 @@
 		386263E822D4083200CBB2D6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				386263F922D542DF00CBB2D6 /* Post.h */,
+				386263FA22D542DF00CBB2D6 /* Post.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -430,7 +440,9 @@
 				386263C222D3F84600CBB2D6 /* main.m in Sources */,
 				386263F222D410A700CBB2D6 /* timelineViewController.m in Sources */,
 				386263EC22D409C900CBB2D6 /* signupViewController.m in Sources */,
+				386263F822D5294F00CBB2D6 /* ImagePickerViewController.m in Sources */,
 				386263B422D3F84500CBB2D6 /* AppDelegate.m in Sources */,
+				386263FB22D542DF00CBB2D6 /* Post.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

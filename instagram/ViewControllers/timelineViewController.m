@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 
-@interface timelineViewController ()
+@interface timelineViewController () 
 
 @end
 
