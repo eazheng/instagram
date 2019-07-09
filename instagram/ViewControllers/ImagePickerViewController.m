@@ -7,9 +7,11 @@
 //
 
 #import "ImagePickerViewController.h"
+#import "Post.h"
 
 @interface ImagePickerViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *postImage;
+@property (weak, nonatomic) IBOutlet UITextField *captionField;
 
 @end
 
@@ -20,6 +22,21 @@
     // Do any additional setup after loading the view.
     
 
+}
+
+//resize image to be within 10MB
+- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
+    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    
+    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
+    resizeImageView.image = image;
+    
+    UIGraphicsBeginImageContext(size);
+    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 
 // the delegate method
@@ -37,6 +54,12 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)dismissKeyboardAction:(id)sender {
+    NSLog(@"I want to dismiss keyboard");
+    //[self dismissKeyboardAction:];
+    [self.view endEditing:YES];
+    NSLog(@"Current captions: %@", self.captionField.text);
+}
 
 - (IBAction)tapImageAction:(id)sender {
     
@@ -56,6 +79,20 @@
     
     [self presentViewController:imagePickerVC animated:YES completion:nil];
 
+}
+
+- (IBAction)cancelPostingAction:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)createPostAction:(id)sender {
+    NSLog(@"Want to post");
+    //resize image before posting
+    CGSize size = CGSizeMake(400, 400);
+    //UIImage *resizedImage = [self resizeImage:self.postImage.image withSize:([CGSizeMake(400, 400)])];
+    UIImage *resizedImage = [self resizeImage:self.postImage.image withSize:size];
+    
+    [Post postUserImage:resizedImage withCaption:self.captionField.text withCompletion:nil];
 }
 
 /*

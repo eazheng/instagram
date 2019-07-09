@@ -134,7 +134,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gqa-fA-hc3">
                                 <rect key="frame" x="70" y="309" width="275" height="34"/>
@@ -213,19 +213,35 @@
                                     <outletCollection property="gestureRecognizers" destination="pWh-sF-D1Z" appends="YES" id="e51-Gu-a0x"/>
                                 </connections>
                             </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write a caption..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t3x-Jw-Tzz">
+                                <rect key="frame" x="20" y="353" width="356" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="Srs-ea-DDa"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="eIF-bo-aWs" appends="YES" id="8OP-cn-6Nm"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="Zo5-eo-TeG">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="AY1-mP-pCf">
                             <connections>
-                                <segue destination="pgi-U8-dgT" kind="presentation" id="0Jt-F7-vFN"/>
+                                <action selector="cancelPostingAction:" destination="yYq-Lv-pMc" id="Q4Q-h1-sg1"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Share" id="uRn-Of-KAp"/>
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="uRn-Of-KAp">
+                            <connections>
+                                <action selector="createPostAction:" destination="yYq-Lv-pMc" id="cLH-0R-oPr"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="captionField" destination="t3x-Jw-Tzz" id="DbU-4E-CVw"/>
                         <outlet property="postImage" destination="TsK-I3-bSz" id="BoU-xi-n53"/>
                     </connections>
                 </viewController>
@@ -233,6 +249,11 @@
                 <tapGestureRecognizer id="pWh-sF-D1Z">
                     <connections>
                         <action selector="tapImageAction:" destination="yYq-Lv-pMc" id="LtQ-46-Zjd"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="eIF-bo-aWs">
+                    <connections>
+                        <action selector="dismissKeyboardAction:" destination="yYq-Lv-pMc" id="eIt-im-dKG"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -280,6 +301,6 @@
         <image name="insta_camera_btn" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0Jt-F7-vFN"/>
+        <segue reference="R0Y-lq-YKz"/>
     </inferredMetricsTieBreakers>
 </document>
