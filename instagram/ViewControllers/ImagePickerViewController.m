@@ -23,7 +23,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-
 }
 
 //resize image to be within 10MB
@@ -98,10 +97,29 @@
     CGSize size = CGSizeMake(400, 400);
     UIImage *resizedImage = [self resizeImage:self.postImage.image withSize:size];
     
-    [Post postUserImage:resizedImage withCaption:self.captionField.text withCompletion:nil];
+    //[Post postUserImage:resizedImage withCaption:self.captionField.text withCompletion:nil];
+
+//    [Post postUserImage:resizedImage withCaption:self.captionField.text withCompletion:completion:^(Tweet *tweet, NSError *error) {
+//        if(error){
+//            NSLog(@"Error composing Tweet: %@", error.localizedDescription);
+//        }
+//        else{
+//            [self.delegate didTweet:tweet];
+//            NSLog(@"Compose Tweet Success!");
+//        }
+//    }];
     
-    // refresh timeline so post shows up
-    //[reloadData];
+    [Post postUserImage:resizedImage withCaption:self.captionField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if(!succeeded){
+            NSLog(@"Error composing Post: %@", error.localizedDescription);
+        }
+        else{
+            //refreshes timeline
+            [self.delegate didPost];
+            NSLog(@"Compose Tweet Success!");
+        }
+    }];
+
     //go back to timeline view controller after posting
     [self dismissViewControllerAnimated:YES completion:nil];
 

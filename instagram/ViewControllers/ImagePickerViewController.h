@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol ImagePickerViewControllerDelegate
 
-- (void)didPost:(Post *) post;
+- (void)didPost;
 
 @end
 

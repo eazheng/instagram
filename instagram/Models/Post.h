@@ -8,6 +8,7 @@
 
 #import <Parse/Parse.h>
 #import "PFObject.h"
+NS_ASSUME_NONNULL_BEGIN
 
 @interface Post : PFObject <PFSubclassing>
 
@@ -20,9 +21,16 @@
 @property (nonatomic, strong) NSNumber *likeCount;
 @property (nonatomic, strong) NSNumber *commentCount;
 
-// add a timestamp property?
+// TODO: add a timestamp property?
 
 + (void) postUserImage: ( UIImage * _Nullable )image withCaption: ( NSString * _Nullable )caption withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
+//+ (void) postUserImage: ( UIImage * _Nullable )image withCaption: ( NSString * _Nullable )caption
+//        withCompletion: (void (^)(Post *, NSError *))completion;
+
+// (void)postStatusWithText:(NSString *)text completion:(void (^)(Tweet *, NSError *))completion;
+
+
 @end
 
+NS_ASSUME_NONNULL_END

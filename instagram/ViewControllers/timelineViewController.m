@@ -84,15 +84,18 @@
     NSLog(@"LOGGING OUT");
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    UINavigationController *navigationController = [segue destinationViewController];
+    ImagePickerViewController *imagePickerController = (ImagePickerViewController*)navigationController.topViewController;
+    imagePickerController.delegate = self;
+    
 }
-*/
+
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
@@ -114,8 +117,8 @@
 }
 
 
-- (void)didPost:(nonnull Post *)post {
-    [self.posts insertObject:post atIndex:0];
+- (void)didPost {
+    [self fetchTimeline];
     [self.timelineTableView reloadData];
 }
 

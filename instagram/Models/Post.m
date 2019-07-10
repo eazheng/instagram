@@ -24,6 +24,7 @@
 }
 
 + (void) postUserImage: ( UIImage * _Nullable )image withCaption: ( NSString * _Nullable )caption withCompletion: (PFBooleanResultBlock  _Nullable)completion {
+//+ (void) postUserImage: ( UIImage * _Nullable )image withCaption: ( NSString * _Nullable )caption withCompletion:(nonnull void (^)(Post * _Nonnull, NSError * _Nonnull))completion {
     
     Post *newPost = [Post new];
     newPost.image = [self getPFFileFromImage:image];
@@ -33,6 +34,7 @@
     newPost.commentCount = @(0);
     
     [newPost saveInBackgroundWithBlock: completion];
+    //completion(newPost, nil);
 }
 
 + (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {
