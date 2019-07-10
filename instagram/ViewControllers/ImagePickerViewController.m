@@ -86,13 +86,21 @@
 }
 
 - (IBAction)createPostAction:(id)sender {
-    NSLog(@"Want to post");
+    NSLog(@"Want to post image");
+    
+    //TODO: do not move on if new image has not been uploaded
+    //if (self.postImage.image == [UIImage imageNamed:@"image_placeholder"]) {
+        //NSLog(@"Need to add an image");
+    //}
     //resize image before posting
     CGSize size = CGSizeMake(400, 400);
     //UIImage *resizedImage = [self resizeImage:self.postImage.image withSize:([CGSizeMake(400, 400)])];
     UIImage *resizedImage = [self resizeImage:self.postImage.image withSize:size];
     
     [Post postUserImage:resizedImage withCaption:self.captionField.text withCompletion:nil];
+    
+    //go back to timeline view controller after posting
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*
