@@ -8,10 +8,12 @@
 
 #import "ImagePickerViewController.h"
 #import "Post.h"
+#import "timelineViewController.h"
 
 @interface ImagePickerViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *postImage;
 @property (weak, nonatomic) IBOutlet UITextField *captionField;
+
 
 @end
 
@@ -94,14 +96,17 @@
     //}
     //resize image before posting
     CGSize size = CGSizeMake(400, 400);
-    //UIImage *resizedImage = [self resizeImage:self.postImage.image withSize:([CGSizeMake(400, 400)])];
     UIImage *resizedImage = [self resizeImage:self.postImage.image withSize:size];
     
     [Post postUserImage:resizedImage withCaption:self.captionField.text withCompletion:nil];
     
+    // refresh timeline so post shows up
+    //[reloadData];
     //go back to timeline view controller after posting
     [self dismissViewControllerAnimated:YES completion:nil];
+
 }
+
 
 /*
 #pragma mark - Navigation

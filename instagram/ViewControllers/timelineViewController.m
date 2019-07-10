@@ -12,11 +12,13 @@
 #import "LoginViewController.h"
 #import "Post.h"
 #import "PostCell.h"
+#import "ImagePickerViewController.h"
 
-@interface timelineViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface timelineViewController () <ImagePickerViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) NSMutableArray *posts;
 @property (weak, nonatomic) IBOutlet UITableView *timelineTableView;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -25,11 +27,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.timelineTableView reloadData];
+    
+    [self fetchTimeline];
+    
+    //initialize refresh control
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    //Bind the action to the refresh control
+    [self.refreshControl addTarget:self action:@selector(fetchTimeline) forControlEvents:UIControlEventValueChanged];
+    //Insert the refresh control into the list
+    [self.timelineTableView insertSubview:self.refreshControl atIndex:0];
     
     //view controller becomes dataSource and deleagate of tableview
     self.timelineTableView.dataSource = self;
     self.timelineTableView.delegate = self;
     
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self fetchTimeline];
+}
+
+- (void) fetchTimeline {
     // construct PFQuery
     PFQuery *postQuery = [Post query];
     [postQuery orderByDescending:@"createdAt"];
@@ -43,7 +63,7 @@
             self.posts = (NSMutableArray *) posts;
             //reload the table view
             [self.timelineTableView reloadData];
-            
+            [self.refreshControl endRefreshing];
         }
         else {
             // handle error
@@ -91,6 +111,12 @@
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.posts.count;
+}
+
+
+- (void)didPost:(nonnull Post *)post {
+    [self.posts insertObject:post atIndex:0];
+    [self.timelineTableView reloadData];
 }
 
 

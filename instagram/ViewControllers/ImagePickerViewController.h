@@ -7,10 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Post.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol ImagePickerViewControllerDelegate
+
+- (void)didPost:(Post *) post;
+
+@end
+
+
+
 @interface ImagePickerViewController : UIViewController
+
+//@property (strong, nonatomic) UITableView*timelineTableView;
+
+@property (nonatomic, weak) id<ImagePickerViewControllerDelegate> delegate;
 
 @end
 
