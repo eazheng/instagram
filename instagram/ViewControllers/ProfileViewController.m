@@ -61,15 +61,22 @@
 
 - (void) fetchTimeline {
     // construct PFQuery
-    PFQuery *postQuery = [Post query];
-    [postQuery orderByDescending:@"createdAt"];
-    [postQuery includeKey:@"author"];
-    postQuery.limit = 20;
+//    [postQuery includeKey:@"author"];
+//
+    
+    // Find all posts by the current user
+    PFUser *cur = [PFUser currentUser];
+    PFQuery *query = [Post query];
+    [query orderByDescending:@"createdAt"];
+    [query whereKey:@"author" equalTo:cur];
+    NSArray *usersPosts = [query findObjects];
+    query.limit = 20;
     
     // fetch data asynchronously
-    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
+    [query findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
         if (posts) {
-            self.posts = (NSMutableArray *) posts;
+            self.posts = (NSMutableArray *) usersPosts;
+
             //reload the table view
             [self.collectionView reloadData];
         }

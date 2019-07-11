@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *likeCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timestampLabel;
-
+@property (weak, nonatomic) IBOutlet UIImageView *authorImage;
 
 @end
 
@@ -28,6 +28,17 @@
     // Do any additional setup after loading the view.
     
     self.authorLabel.text = self.post.author.username;
+    
+    //set profile image
+    [self.post.author[@"profilePicture"] getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
+        if (!error) {
+            self.authorImage.image = [UIImage imageWithData:data];
+        }
+    }];
+    self.authorImage.layer.cornerRadius = self.authorImage.frame.size.width / 2;
+    self.authorImage.clipsToBounds = YES;
+    
+    
     [self.post.image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
         if (!error) {
             self.postedImage.image = [UIImage imageWithData:data];
