@@ -8,6 +8,8 @@
 
 #import "LoginViewController.h"
 #import "Parse/Parse.h"
+#import "AppDelegate.h"
+#import "timelineViewController.h"
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
@@ -23,7 +25,6 @@
     // Do any additional setup after loading the view.
 }
 
-
 - (IBAction)loginAction:(id)sender {
     NSString *username = self.usernameField.text;
     NSString *password = self.passwordField.text;
@@ -35,11 +36,17 @@
             NSLog(@"User logged in successfully");
             
             // display view controller that needs to shown after successful login
-            [self performSegueWithIdentifier:@"home" sender:nil];
+            //[self performSegueWithIdentifier:@"home" sender:nil];
+            
+            //change root view controller to tab bar once logged in - timeline
+            AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            timelineViewController *timelineViewController = [storyboard instantiateViewControllerWithIdentifier:@"AuthenticatedViewController"];
+            appDelegate.window.rootViewController = timelineViewController;
         }
     }];
 }
-
 
 /*
 #pragma mark - Navigation

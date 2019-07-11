@@ -34,7 +34,6 @@
         
         self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"AuthenticatedViewController"];
     }
-    //NSLog(@"HELLO");
     
     /*
     //a final test

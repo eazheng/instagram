@@ -8,6 +8,8 @@
 
 #import "signupViewController.h"
 #import "Parse/Parse.h"
+#import "timelineViewController.h"
+#import "AppDelegate.h"
 
 @interface signupViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
@@ -56,7 +58,15 @@
             NSLog(@"User registered successfully");
             
             // manually segue to logged in view
-            [self performSegueWithIdentifier:@"registered" sender:nil];
+            //[self performSegueWithIdentifier:@"registered" sender:nil];
+            
+            //change root view controller to tab bar once logged in - timeline
+            AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            signupViewController *timelineViewController = [storyboard instantiateViewControllerWithIdentifier:@"AuthenticatedViewController"];
+            appDelegate.window.rootViewController = timelineViewController;
+            
         }
     }];
 }

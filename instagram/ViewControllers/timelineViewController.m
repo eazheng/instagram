@@ -119,6 +119,18 @@
     
     cell.authorLabel.text = post.author.username;
     
+    PFUser *cur = [PFUser currentUser];
+
+    [cur[@"profilePicture"] getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
+        if (!error) {
+            cell.authorImage.image = [UIImage imageWithData:data];
+        }
+    }];
+    cell.authorImage.layer.cornerRadius = cell.authorImage.frame.size.width / 2;
+    cell.authorImage.clipsToBounds = YES;
+    
+    
+    
     //run in background to prevent blocking main thread
     [post.image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
         if (!error) {
