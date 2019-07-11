@@ -39,7 +39,7 @@
     
     NSString *postTimestamp = [NSString stringWithFormat:@"%@", self.post.createdAt];
     self.timestampLabel.text = postTimestamp;
-    NSLog(@"Timestamp: %@", postTimestamp);
+    //NSLog(@"Timestamp: %@", postTimestamp);
     
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
