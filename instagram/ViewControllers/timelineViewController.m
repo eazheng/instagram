@@ -14,6 +14,7 @@
 #import "PostCell.h"
 #import "ImagePickerViewController.h"
 #import "DetailsViewController.h"
+#import "DateTools.h"
 
 @interface timelineViewController () <ImagePickerViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 
@@ -128,6 +129,32 @@
     cell.likeCountLabel.text = [NSString stringWithFormat:@"%@", post.likeCount];
     cell.captionLabel.text = post.caption;
     //cell.timestampLabel.text =
+    
+    NSString *postTimestamp = [NSString stringWithFormat:@"%@", post.createdAt];
+    cell.timestampLabel.text = postTimestamp;
+    //NSLog(@"Timestamp: %@", postTimestamp);
+    
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    // Configure the input format to parse the date string
+    formatter.dateFormat = @"YYYY-MM-dd HH:mm:ss z";
+    // Convert String to Date
+    NSDate *date = [formatter dateFromString:postTimestamp];
+    NSDate *now = [[NSDate date] dateByAddingDays:-1];
+    BOOL postWasRecentBool = [date isLaterThan:now];
+    
+    //if post was less than 1 day ago
+    if (postWasRecentBool) {
+        cell.timestampLabel.text = [NSString stringWithFormat:@"%@%@", date.shortTimeAgoSinceNow, @" ago"];
+    }
+    else {
+        // Configure output format
+        formatter.dateStyle = NSDateFormatterShortStyle;
+        formatter.timeStyle = NSDateFormatterNoStyle;
+        // Convert Date to String
+        cell.timestampLabel.text = [formatter stringFromDate:date];
+    }
+    
     return cell;
 }
 
