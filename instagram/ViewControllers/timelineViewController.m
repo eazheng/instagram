@@ -13,12 +13,14 @@
 #import "Post.h"
 #import "PostCell.h"
 #import "ImagePickerViewController.h"
+#import "DetailsViewController.h"
 
-@interface timelineViewController () <ImagePickerViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface timelineViewController () <ImagePickerViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 
 @property (strong, nonatomic) NSMutableArray *posts;
 @property (weak, nonatomic) IBOutlet UITableView *timelineTableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (assign, nonatomic) BOOL isMoreDataLoading;
 
 @end
 
@@ -54,12 +56,11 @@
     PFQuery *postQuery = [Post query];
     [postQuery orderByDescending:@"createdAt"];
     [postQuery includeKey:@"author"];
-    postQuery.limit = 20;
+    postQuery.limit = 30;
     
     // fetch data asynchronously
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
         if (posts) {
-            // do something with the data fetched
             self.posts = (NSMutableArray *) posts;
             //reload the table view
             [self.timelineTableView reloadData];
@@ -67,6 +68,7 @@
         }
         else {
             // handle error
+            NSLog(@"Error fetching posts");
         }
     }];
 }
@@ -90,9 +92,20 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    UINavigationController *navigationController = [segue destinationViewController];
-    ImagePickerViewController *imagePickerController = (ImagePickerViewController*)navigationController.topViewController;
-    imagePickerController.delegate = self;
+    if ([segue.identifier isEqualToString:@"ShowComposer"]) {
+        UINavigationController *navigationController = [segue destinationViewController];
+        ImagePickerViewController *imagePickerController = (ImagePickerViewController*)navigationController.topViewController;
+        imagePickerController.delegate = self;
+    }
+    
+    //for details view controller
+    else if ([segue.identifier isEqualToString:@"ShowDetails"]) {
+        PostCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.timelineTableView indexPathForCell:tappedCell];
+        
+        DetailsViewController *detailViewController = [segue destinationViewController];
+        detailViewController.post = self.posts[indexPath.row];
+    }
     
 }
 
@@ -104,8 +117,14 @@
     //cell.authorImage.image =
     
     cell.authorLabel.text = post.author.username;
-    NSData *imageData = [post.image getData];
-    cell.postedImage.image = [UIImage imageWithData:imageData];
+    
+    //run in background to prevent blocking main thread
+    [post.image getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
+        if (!error) {
+            cell.postedImage.image = [UIImage imageWithData:data];
+        }
+    }];
+    
     cell.likeCountLabel.text = [NSString stringWithFormat:@"%@", post.likeCount];
     cell.captionLabel.text = post.caption;
     //cell.timestampLabel.text =
@@ -122,5 +141,51 @@
     [self.timelineTableView reloadData];
 }
 
+/*
+- (void) fetchMoreData {
+    // construct PFQuery
+    PFQuery *postQuery = [Post query];
+    [postQuery orderByDescending:@"createdAt"];
+    [postQuery includeKey:@"author"];
+    postQuery.limit = 20;
+    postQuery.skip = 20;
 
+    // fetch data asynchronously
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
+        if (posts) {
+            self.posts = (NSMutableArray *) posts;
+            //            //[self.posts addObjectsFromArray:(NSMutableArray *)posts];
+            //            // do something with the data fetched
+            //            if (self.posts == nil || posts == nil) {
+            //                self.posts = (NSMutableArray *) posts;
+            //            }
+            //            else {
+            //                [self.posts addObjectsFromArray:(NSMutableArray *)posts];//(NSMutableArray *) posts;
+            //            }
+            //[allMyObjects addObjectsFromArray: array2];
+            //reload the table view
+            [self.timelineTableView reloadData];
+            [self.refreshControl endRefreshing];
+        }
+        else {
+            // handle error
+        }
+    }];
+    
+}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if(!self.isMoreDataLoading){
+        // Calculate the position of one screen length before the bottom of the results
+        int scrollViewContentHeight = self.timelineTableView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.timelineTableView.bounds.size.height;
+        
+        // When the user has scrolled past the threshold, start requesting
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.timelineTableView.isDragging) {
+            self.isMoreDataLoading = true;
+            //[self loadMoreData];
+            [self fetchMoreData];
+        }
+    }
+}
+ */
 @end

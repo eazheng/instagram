@@ -90,38 +90,28 @@
     NSLog(@"Want to post image");
     
     //TODO: do not move on if new image has not been uploaded
-    //if (self.postImage.image == [UIImage imageNamed:@"image_placeholder"]) {
-        //NSLog(@"Need to add an image");
-    //}
-    //resize image before posting
-    CGSize size = CGSizeMake(400, 400);
-    UIImage *resizedImage = [self resizeImage:self.postImage.image withSize:size];
-    
-    //[Post postUserImage:resizedImage withCaption:self.captionField.text withCompletion:nil];
+    if (self.postImage.image == [UIImage imageNamed:@"image_placeholder"]) {
+        NSLog(@"Need to add an image");
+    }
+    else {
+        //resize image before posting
+        CGSize size = CGSizeMake(400, 400);
+        UIImage *resizedImage = [self resizeImage:self.postImage.image withSize:size];
+        
+        [Post postUserImage:resizedImage withCaption:self.captionField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+            if(!succeeded){
+                NSLog(@"Error composing Post: %@", error.localizedDescription);
+            }
+            else{
+                //refreshes timeline
+                [self.delegate didPost];
+                NSLog(@"Compose Tweet Success!");
+            }
+        }];
 
-//    [Post postUserImage:resizedImage withCaption:self.captionField.text withCompletion:completion:^(Tweet *tweet, NSError *error) {
-//        if(error){
-//            NSLog(@"Error composing Tweet: %@", error.localizedDescription);
-//        }
-//        else{
-//            [self.delegate didTweet:tweet];
-//            NSLog(@"Compose Tweet Success!");
-//        }
-//    }];
-    
-    [Post postUserImage:resizedImage withCaption:self.captionField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-        if(!succeeded){
-            NSLog(@"Error composing Post: %@", error.localizedDescription);
-        }
-        else{
-            //refreshes timeline
-            [self.delegate didPost];
-            NSLog(@"Compose Tweet Success!");
-        }
-    }];
-
-    //go back to timeline view controller after posting
-    [self dismissViewControllerAnimated:YES completion:nil];
+        //go back to timeline view controller after posting
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 
 }
 

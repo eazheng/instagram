@@ -20,16 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) PFFileObject *image;
 @property (nonatomic, strong) NSNumber *likeCount;
 @property (nonatomic, strong) NSNumber *commentCount;
-
-// TODO: add a timestamp property?
+@property (nonatomic, strong) NSDate *createdAt;
 
 + (void) postUserImage: ( UIImage * _Nullable )image withCaption: ( NSString * _Nullable )caption withCompletion: (PFBooleanResultBlock  _Nullable)completion;
-
-//+ (void) postUserImage: ( UIImage * _Nullable )image withCaption: ( NSString * _Nullable )caption
-//        withCompletion: (void (^)(Post *, NSError *))completion;
-
-// (void)postStatusWithText:(NSString *)text completion:(void (^)(Tweet *, NSError *))completion;
-
 
 @end
 
