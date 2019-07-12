@@ -46,6 +46,16 @@
     }];
     
     self.likeCountLabel.text = [NSString stringWithFormat:@"%@", self.post.likeCount];
+    
+    //load correct favorite button icon
+    if (self.post.liked) {
+        [self.likeButton setImage:[UIImage imageNamed:@"favor-icon-red"] forState:UIControlStateNormal];
+    }
+    else {
+        [self.likeButton setImage:[UIImage imageNamed:@"favor-icon"] forState:UIControlStateNormal];
+    }
+        
+        
     self.captionLabel.text = self.post.caption;
     
     NSString *postTimestamp = [NSString stringWithFormat:@"%@", self.post.createdAt];

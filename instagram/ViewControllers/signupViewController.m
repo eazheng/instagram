@@ -71,4 +71,11 @@
     }];
 }
 
+- (IBAction)dismissKeyboardAction:(id)sender {
+    NSLog(@"I want to dismiss keyboard");
+    //[self dismissKeyboardAction:];
+    [self.view endEditing:YES];
+}
+
+
 @end

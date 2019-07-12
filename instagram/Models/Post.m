@@ -19,6 +19,7 @@
 @dynamic likeCount;
 @dynamic commentCount;
 @dynamic createdAt;
+//@dynamic liked;
 
 
 + (nonnull NSString *)parseClassName {

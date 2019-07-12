@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSNumber *likeCount;
 @property (nonatomic, strong) NSNumber *commentCount;
 @property (nonatomic, strong) NSDate *createdAt;
+@property (nonatomic) BOOL liked; // Configure favorite button
+@property (nonatomic) NSMutableArray *likedUsers;
 
 
 

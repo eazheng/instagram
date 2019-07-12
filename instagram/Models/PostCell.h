@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Post.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *likeCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timestampLabel;
+
+@property (strong, nonatomic) Post *post;
 
 @end
 

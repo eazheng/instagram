@@ -15,6 +15,7 @@
 #import "ImagePickerViewController.h"
 #import "DetailsViewController.h"
 #import "DateTools.h"
+#import "ProfileViewController.h"
 
 @interface timelineViewController () <ImagePickerViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 
@@ -57,7 +58,7 @@
     PFQuery *postQuery = [Post query];
     [postQuery orderByDescending:@"createdAt"];
     [postQuery includeKey:@"author"];
-    postQuery.limit = 30;
+    postQuery.limit = 20;
     
     // fetch data asynchronously
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable posts, NSError * _Nullable error) {
@@ -116,8 +117,11 @@
     
     Post *post = self.posts[indexPath.item];
     //cell.authorImage.image =
+    cell.post = post;
     
     cell.authorLabel.text = post.author.username;
+    
+    cell.authorImage.image = [UIImage imageNamed:@"image_placeholder"];
     
     //set profile images on timeline posts
     [post.author[@"profilePicture"] getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
@@ -137,6 +141,17 @@
     }];
     
     cell.likeCountLabel.text = [NSString stringWithFormat:@"%@", post.likeCount];
+    
+    //load correct favorite button icon
+    if (post.liked) {
+        [cell.likeButton setImage:[UIImage imageNamed:@"favor-icon-red"] forState:UIControlStateNormal];
+    }
+    else {
+        [cell.likeButton setImage:[UIImage imageNamed:@"favor-icon"] forState:UIControlStateNormal];
+    }
+
+        
+        
     cell.captionLabel.text = post.caption;
     //cell.timestampLabel.text =
     

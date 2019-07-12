@@ -178,6 +178,8 @@
     
     PostCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PostCollectionViewCell" forIndexPath:indexPath];
     
+
+    
     
     Post *post = self.posts[indexPath.item];
     
