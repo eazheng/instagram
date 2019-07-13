@@ -143,14 +143,13 @@
     cell.likeCountLabel.text = [NSString stringWithFormat:@"%@", post.likeCount];
     
     //load correct favorite button icon
-    if (post.liked) {
+    if ([post.likedUsers containsObject:cell.authorLabel.text]) {
         [cell.likeButton setImage:[UIImage imageNamed:@"favor-icon-red"] forState:UIControlStateNormal];
     }
     else {
         [cell.likeButton setImage:[UIImage imageNamed:@"favor-icon"] forState:UIControlStateNormal];
     }
 
-        
         
     cell.captionLabel.text = post.caption;
     //cell.timestampLabel.text =

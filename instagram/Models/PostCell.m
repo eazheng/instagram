@@ -26,16 +26,16 @@
 
 - (IBAction)didTapFavorite:(id)sender {
     // to favorite
-    PFUser *curUser = [PFUser currentUser];
+    //PFUser *curUser = [PFUser currentUser];
 
-    if (![self.post.likedUsers containsObject:curUser]) {
+    if (![self.post.likedUsers containsObject:self.authorLabel.text]) {
     //if (self.post.liked == NO) {
         if (self.post.likedUsers.count == 0) {
-            self.post.likedUsers = [NSMutableArray arrayWithObjects:curUser, nil];
+            self.post.likedUsers = [NSMutableArray arrayWithObjects:self.authorLabel.text, nil];
         }
         else {
         
-            [self.post.likedUsers addObject:curUser];
+            [self.post.likedUsers addObject:self.authorLabel.text];
         }
         NSLog(@"%@", self.post.likedUsers);
         self.post.liked = YES;
@@ -72,7 +72,11 @@
     }
     // to unfavorite (was alrady favorited before)
     else {
-        // TODO: Update the local tweet model
+        //remove this user from array
+        NSUInteger i = [self.post.likedUsers indexOfObject:self.authorLabel.text];
+        [self.post.likedUsers removeObjectAtIndex:i];
+    //indexOfObject:aString
+        
         self.post.liked = NO;
         NSLog(@"LIKE: %@", self.post.likeCount);
         
