@@ -47,12 +47,12 @@ Please list two areas of the assignment you'd like to **discuss further with you
 Here's a walkthrough of implemented user stories:
 
 Creating a new account and adding a profile picture:
-<img src='hhttp://g.recordit.co/OBQ2vRiprK.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://g.recordit.co/OBQ2vRiprK.gif' title='Video Walkthrough1' width='' alt='Video Walkthrough1' />
 
 
 Posting a new pic and liking photos on timeline:
 
-<img src='http://g.recordit.co/rLDakSB2qZ.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://g.recordit.co/rLDakSB2qZ.gif' title='Video Walkthrough2' width='' alt='Video Walkthrough2' />
 
 GIF created with [Recordit](http://www.recordit.co).
 
