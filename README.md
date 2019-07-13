@@ -2,7 +2,7 @@
 
 **Instagram** is a photo sharing app using Parse as its backend.
 
-Time spent: **X** hours spent in total
+Time spent: **22** hours spent in total
 
 ## User Stories
 
@@ -19,8 +19,8 @@ The following **required** functionality is completed:
 The following **optional** features are implemented:
 
 - [x] Run your app on your phone and use the camera to take the photo
-- [ ] Style the login page to look like the real Instagram login page.
-- [ ] Style the feed to look like the real Instagram feed.
+- [x] Style the login page to look like the real Instagram login page.
+- [x] Style the feed to look like the real Instagram feed.
 - [x] User can use a tab bar to switch between all "Instagram" posts and posts published only by the user. AKA, tabs for Home Feed and Profile
 - [ ] User can load more posts once he or she reaches the bottom of the feed using infinite scrolling.
 - [x] Show the username and creation time for each post
@@ -30,7 +30,7 @@ The following **optional** features are implemented:
   - [x] Display the profile photo with each post
   - [ ] Tapping on a post's username or profile photo goes to that user's profile page
 - [ ] User can comment on a post and see all comments for each post in the post details screen.
-- [ ] User can like a post and see number of likes for each post in the post details screen.
+- [x] User can like a post in home timeline and see number of likes for each post in the post details screen.
 - [ ] Implement a custom camera view.
 
 The following **additional** features are implemented:
@@ -39,16 +39,22 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. I would be interested in adding a feature such that a double tap on the image would be the same as tapping the like button to like a post.
+2. It would be interesting to see the different ways in which everyone kept track of which user liked each photo and how many likes each photo had, as well as if anyone was able to create a comment feature that displayed a section for comments only if there were some which already existed.
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+Creating a new account and adding a profile picture:
+<img src='hhttp://g.recordit.co/OBQ2vRiprK.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-GIF created with [Recordit](http://www.cockos.com/licecap/).
+
+Posting a new pic and liking photos on timeline:
+
+<img src='http://g.recordit.co/rLDakSB2qZ.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [Recordit](http://www.recordit.co).
 
 ## Credits
 
