@@ -67,6 +67,8 @@ List an 3rd party libraries, icons, graphics, or other assets you used in your a
 
 Describe any challenges encountered while building the app.
 
+One aspect of the app I found challenging was to figure out how to communicate with the Parse server, for example, finding the appropriate methods to set and save the data as well as query for the Post objects and extracting the needed information from there. Especially being unfamiliar with Heroku and the Parse package, it took a while to figure out how to make sure all the data from the app was being synced up with the server data.
+
 ## License
 
     Copyright [2019] [eazheng]
